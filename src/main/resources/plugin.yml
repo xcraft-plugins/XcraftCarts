@@ -1,0 +1,17 @@
+name: XcraftCarts
+main: de.xcraft.xcraftcarts.XcraftCarts
+version: "0.1"
+authors:
+  - "LordSandukhan"
+  - "MyNameIsJan"
+description: accelerates minecarts past normal speed limits
+api-version: 1.18
+commands:
+   xcarts:
+      description: Speedboost Minecarts
+      usage: /<command> help
+      permission: xcarts.commands
+permissions:
+  xcarts.commands:
+    description: Allows xcarts command
+    default: op

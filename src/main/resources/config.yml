@@ -1,0 +1,13 @@
+CONFIG:
+   # activationTime in tick - 20 for 1 second
+   activationTime: 100
+
+MESSAGES:
+   Error: "Es ist ein Fehler aufgetreten."
+   Help: "Befehlsliste:"
+   Invalid_cmd: "Unbekannter Befehl!"
+   NoPerms: "Das darfst du nicht tun!"
+   Reload: "Xcarts wurde neugeladen."
+   Slowdown: "Die Minecarts fahren wieder mit normaler Geschwindigkeit."
+   Speedup: "Sämtlicher Minecarts fahren nun schneller."
+   Version: "Aktuelle Version: "
