@@ -1,5 +1,7 @@
 package de.xcraft.xcraftcarts;
 
+import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Minecart;
 import org.bukkit.event.EventHandler;
@@ -31,7 +33,20 @@ public class EventListener implements Listener {
             if (event.getVehicle() instanceof Minecart && cart.getCustomName() != null
                     && cart.getCustomName().equals("ardabahn") && !cart.isEmpty()) {
 
-                setVelocity(cart, 1.0);
+            	if (cart.getLocation().getBlock().getRelative(BlockFace.UP, 2).getType() == Material.BARRIER) {
+            	
+                    setVelocity(cart, 0.4);
+                
+            	} else if (cart.getLocation().getBlock().getRelative(BlockFace.DOWN, 2).getType() == Material.BARRIER) {
+                    	
+                    setVelocity(cart, 2.0);
+                    
+            	} else {
+            		
+            		setVelocity(cart, 1.0);
+            		
+            	}
+            	
 
             //
             // remove derailed/emty minecart
@@ -66,7 +81,7 @@ public class EventListener implements Listener {
 
     private void setVelocity(Minecart cart, double v) {
         BlockFace facing = cart.getFacing();
-
+		
         switch (facing.name()) {
 
             case "DOWN":
@@ -102,7 +117,9 @@ public class EventListener implements Listener {
             default:
                 cart.setMaxSpeed(0.40);
                 return;
+                
         }
+        
     }
 
 }
