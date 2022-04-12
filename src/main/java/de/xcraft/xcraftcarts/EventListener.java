@@ -8,6 +8,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.vehicle.VehicleMoveEvent;
 import org.bukkit.util.Vector;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.Rail;
 
 import static de.xcraft.xcraftcarts.XcraftCarts.PLUGIN;
 
@@ -19,131 +21,118 @@ public class EventListener implements Listener {
     }
 
     //EventHandler
-    @EventHandler(priority = EventPriority.LOWEST)
+    @SuppressWarnings("deprecation")
+	@EventHandler(priority = EventPriority.LOWEST)
     public void onVehicleMove(VehicleMoveEvent event) {
-
+    	
         if (PLUGIN.runtimer) {
             Minecart cart = (Minecart) event.getVehicle();
             
             //
             // boost minecart speed
             //
-
-            if (event.getVehicle() instanceof Minecart && cart.getCustomName() != null
-                    && cart.getCustomName().equals("ardabahn") && !cart.isEmpty()) {
-
-            	if (cart.getLocation().getBlock().getRelative(BlockFace.UP, 2).getType() == Material.BARRIER) {
-            	
-                    setVelocity(cart, 0.4);
-                
-            	} else if (cart.getLocation().getBlock().getRelative(BlockFace.DOWN, 3).getType() == Material.BARRIER) {
-                    	
-                    setVelocity(cart, 2.0);
-                    
-            	} else {
-            		
-            		setVelocity(cart, 1.0);
-            		
-            	}
-            	
-
+            
+            if (event.getVehicle() instanceof Minecart && cart.getCustomName() != null && cart.getCustomName().equals("ardabahn") && !cart.isEmpty())
+            
+            	getRail(cart);
+            
             //
             // remove derailed/emty minecart
             //
                 
-            } else if (event.getVehicle() instanceof Minecart && cart.getCustomName() != null
-                    && cart.getCustomName().equals("ardabahn") && cart.isEmpty()) {
-                
-            	cart.remove();
-                return;
-
-            } else {
-
-                return;
-
-            }
-
-        //
-        // Reset minecart speed
-        //
+            if (event.getVehicle() instanceof Minecart && cart.getCustomName() != null && cart.getCustomName().equals("ardabahn") && cart.isEmpty())
             
-        } else {
-            Minecart cart = (Minecart) event.getVehicle();
-            if (event.getVehicle() instanceof Minecart && cart.getCustomName() != null
-                    && cart.getCustomName().equals("ardabahn") && !cart.isEmpty()) {
-                
-            	setVelocity(cart, 0.40);
-            }
+            	cart.remove();
+            	
+            return;
+            
         }
 
     }
 
+    //
+    // check rail condition
+    //
+    
+    private void getRail(Minecart cart) {
+    	
+    	//Get orientation/shape of rail
+        BlockData blockData = cart.getLocation().getBlock().getBlockData();
+        
+    	if (blockData instanceof Rail) {
+    		Rail rail = (Rail) blockData;
+    		Rail.Shape shape = rail.getShape();
+
+	    	//Placing barriers 3 blocks underneath slows down the minecart
+    		//Minecarts on ASCENDING "A" rails get slown down
+	    	if (cart.getLocation().getBlock().getRelative(BlockFace.DOWN, 3).getType() == Material.BARRIER || shape.toString().charAt(0) == 'A') {
+	    	
+	            setVelocity(cart, 0.4);
+	            
+	    	} else {
+	    		
+	    		setVelocity(cart, 1.0);
+	    		
+	    	}
+    	
+    	}
+	    	
+    }
+   
+    //
+    // check minecart orientation and set velocity
+    //
+
     private void setVelocity(Minecart cart, double v) {
-        BlockFace facing = cart.getFacing();
-		
+        
+    	//set allowed max speed
+        cart.setMaxSpeed(v);
+        
+        //Convert minecraft orientation into 360°
         double rotation = (cart.getLocation().getYaw() - 90.0F) % 360.0F;
         if (rotation < 0.0D) rotation += 360.0D;
-        
-        switch (facing.name()) {
-        
-            case "DOWN":
-            	
-                cart.setMaxSpeed(v);
-                cart.setVelocity(new Vector(0.0, -v, 0.0));
-                return;
 
-            case "EAST":
-            	
-                cart.setMaxSpeed(v);
-                
-                if (rotation == 135.0 || rotation == 180.0) {
-                	cart.setVelocity(new Vector(v, 0.0, 0.0));
-                }
-                
-                return;
+        //Get facing of minecart
+        //minecarts only recognize EAST, WEST, SOUTH, NORTH
+        BlockFace facing = cart.getFacing();
+	    						
+		switch (facing.name()) {
+	                    
+	  		case "EAST":
 
-            case "NORTH":
-            	
-                cart.setMaxSpeed(v);
-                
-                if (rotation == 0.0D || rotation == 45.0D || rotation == 360.0D || rotation == 315.0D) {
-                	cart.setVelocity(new Vector(0.0, 0.0, -v)); 
-                }
-                
-                return;
-                
-            case "SOUTH":
-            	
-                cart.setMaxSpeed(v);
-                
-                if (rotation == 180.0D || rotation == 135.0D || rotation == 225.0D) {
-                	cart.setVelocity(new Vector(0.0, 0.0, v));
-                }
-                
-                return;
-
-            case "UP":
-            	
-                cart.setMaxSpeed(v);
-                cart.setVelocity(new Vector(0.0, v, 0.0));
-                return;
-
-            case "WEST":
-            	
-                cart.setMaxSpeed(v);
-                
-                if (rotation == 280.0D || rotation == 335.0D || rotation == 235.0D) {
-                	cart.setVelocity(new Vector(-v, 0.0, 0.0));
-                }
-                
-                return;
-
-            default:
-                cart.setMaxSpeed(0.40);
-                return;
-                
+	  			if (rotation == 135.0 || rotation == 180.0)
+	  				cart.setVelocity(new Vector(v, 0.0, 0.0));
+	                    
+	  			return;
+	
+	  		case "NORTH":
+	                    
+	  			if (rotation == 0.0D || rotation == 45.0D || rotation == 360.0D || rotation == 315.0D)
+	  				cart.setVelocity(new Vector(0.0, 0.0, -v)); 
+	                    
+	  			return;
+	                    
+	  		case "SOUTH":
+	                    
+	  			if (rotation == 180.0D || rotation == 135.0D || rotation == 225.0D)
+	  				cart.setVelocity(new Vector(0.0, 0.0, v));
+	                    
+	  			return;
+	
+	  		case "WEST":
+	                    
+	  			if (rotation == 280.0D || rotation == 335.0D || rotation == 235.0D)
+	                cart.setVelocity(new Vector(-v, 0.0, 0.0));
+	                    
+	            return;
+	
+	  		default:
+	                    
+	  			return;
+	                    
+      
         }
-        
+        	
     }
 
 }

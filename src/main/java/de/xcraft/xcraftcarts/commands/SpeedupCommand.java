@@ -25,11 +25,11 @@ public class SpeedupCommand {
 			public void run()
 			{
 				PLUGIN.runtimer = false;
-				//Bukkit.getServer().getConsoleSender().sendMessage("Plugin.RUNTIMER");
 
 				new BukkitRunnable() {
 					@Override
 					public void run() {
+						sender.sendMessage(ChatColor.DARK_AQUA + PLUGIN.getConfig().getString("MESSAGES.Slowdown"));
 						HandlerList.unregisterAll(PLUGIN);
 					}
 				
