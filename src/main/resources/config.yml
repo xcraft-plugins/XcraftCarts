@@ -4,12 +4,12 @@ CONFIG:
 
 MESSAGES:
    Error: "Es ist ein Fehler aufgetreten."
-   Help: "Befehlsliste:"
+   Help: "§f[§2Ardabahn§f]§3 Befehlsliste:"
    Invalid_cmd: "Unbekannter Befehl!"
    NoPerms: "Das darfst du nicht tun!"
    Reload: "Xcarts wurde neugeladen."
-   Slowdown: "Die Minecarts fahren wieder mit normaler Geschwindigkeit."
-   Speedup: "Die Minecarts der Ardabahn fahren nun für 15 Minuten schneller."
+   Slowdown: "§f[§2Ardabahn§f]§3 Die Minecarts fahren wieder mit normaler Geschwindigkeit."
+   Speedup: "§f[§2Ardabahn§f]§3 Die Minecarts der Ardabahn fahren nun für §a15 Minuten§3 schneller."
    Version: "Aktuelle Version: "
 
 COMMANDS:
