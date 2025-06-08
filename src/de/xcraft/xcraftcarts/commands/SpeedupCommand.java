@@ -69,7 +69,7 @@ public class SpeedupCommand {
 	    //Sender is console
 	    if ((status_runtimer + status_sender) == 50) {
 	    		
-	    	runTask(sender);}
+	    		runTask(sender);}
 	    	
 	    	
             //Sender is player with no perms
@@ -82,7 +82,7 @@ public class SpeedupCommand {
 	    //Player has perms, but no costs enabled
 	    if ((status_runtimer + status_sender + status_permission + status_price) == 155) {
 	    		
-	    	runTask(sender);}
+	    		runTask(sender);}
 	    	
 	    	
 	    //Player has perms, costs are enabled, player has no money
@@ -95,10 +95,10 @@ public class SpeedupCommand {
 	    //Player has perms, costs are enabled, player has money
 	    if ((status_runtimer + status_sender + status_permission + status_price + status_money) == 166) {
 	    		
-	    	Economy eco = XcraftCarts.getEconomy();
+	    		Economy eco = XcraftCarts.getEconomy();
 	    		
-	    	eco.withdrawPlayer((Player)sender, price);
-	    	runTask(sender);}
+	    		eco.withdrawPlayer((Player)sender, price);
+	    		runTask(sender);}
 	    
 	}
 	
