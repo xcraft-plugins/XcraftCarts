@@ -1,0 +1,40 @@
+CONFIG:
+name: XcraftCarts
+main: de.xcraft.xcraftcarts.XcraftCarts
+version: "1.2.1"
+authors:
+  - "Sandukhan"
+  - "MyNameIsJan"
+description: Accelerates minecarts past normal speed limits
+api-version: 1.21
+softdepend: [Vault]
+
+commands:
+   xcarts:
+      description: Help Page
+      usage: /<command> help
+
+permissions:
+  xcarts.*:
+    description: Allows access to all commands
+    children:
+      xcarts.help: true
+      xcarts.reload: true
+      xcarts.version: true
+      xcarts.slowdown: true
+      xcarts.speedup: true
+  xcarts.help:
+    description: Allows help command
+    default: true
+  xcarts.reload:
+    description: Allows reload command
+    default: op
+  xcarts.version:
+    description: Allows version command
+    default: op
+  xcarts.slowdown:
+    description: Allows slowdown command
+    default: op
+  xcarts.speedup:
+    description: Allows speedup command
+    default: true
