@@ -16,7 +16,7 @@ import static de.xcraft.xcraftcarts.XcraftCarts.PLUGIN;
 
 public class EventListener implements Listener {
 
-	//register main class
+    //register main class
     public EventListener() {
     }
     
