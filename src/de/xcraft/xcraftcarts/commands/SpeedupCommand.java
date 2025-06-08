@@ -50,7 +50,7 @@ public class SpeedupCommand {
 			if (price <= 0) status_price = -5;
 			if (price > 0) {status_price = 5;
 	    	
-				//Sender has money?
+			//Sender has money?
 	    		Economy eco = XcraftCarts.getEconomy();
 	    	
 	    		if (eco.has((Player)sender, price) == true) status_money = 1;
@@ -58,7 +58,7 @@ public class SpeedupCommand {
 	    	
 			}
 			
-		//Plugin is already running
+	    //Plugin is already running
 	    if (status_runtimer == -100) {
 	    		
 			//Send already running message
@@ -72,7 +72,7 @@ public class SpeedupCommand {
 	    	runTask(sender);}
 	    	
 	    	
-		//Sender is player with no perms
+            //Sender is player with no perms
 	    if ((status_runtimer + status_sender + status_permission) == 140) {
 	    		
 			MessageHandler noperms = new NoPermsMessage();
