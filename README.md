@@ -1,6 +1,6 @@
 # XcraftCarts
 
-Speeds up minecarts for a specific amount of time. Derailments due to sharp curves are possible, place barrier blocks in these turns to mitigate the problem.
+Speeds up minecarts for a specific amount of time. Derailments due to sharp curves are possible.
 
 ## Features
 - Roughly doubles the default speed of minecarts. (1.0 Vel)
