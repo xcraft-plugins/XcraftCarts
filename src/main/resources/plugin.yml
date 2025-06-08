@@ -5,7 +5,7 @@ authors:
   - "Sandukhan"
   - "MyNameIsJan"
 description: accelerates minecarts past normal speed limits
-api-version: 1.21
+api-version: 1.21.4
 
 commands:
    xcarts:
