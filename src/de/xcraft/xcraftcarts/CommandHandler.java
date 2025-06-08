@@ -69,8 +69,8 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
 
 	    		case "reload":
 	    			
-					ReloadCommand.PluginReload(sender);
-	                return true;
+				ReloadCommand.PluginReload(sender);
+	               		return true;
 	    			
 	    		case "version":
 	    			
