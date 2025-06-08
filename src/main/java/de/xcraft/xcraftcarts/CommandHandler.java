@@ -31,7 +31,7 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
 		if (args.length == 1) {
 			completions.addAll(Arrays.asList("help", "speedup", "version"));
 
-			if (sender.isOp()) {
+			if (sender.isOp() || sender.hasPermission("xcarts.*")) {
 				completions.addAll(Arrays.asList("slowdown", "reload"));
 			}
 		}
@@ -50,7 +50,7 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
 		    switch (args[0]) {
 		    
 	    		case "speedup":
-	    		
+	    			
 	    			SpeedupCommand.Speedup(sender);
 	    			return true;
 

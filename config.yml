@@ -1,15 +1,21 @@
 CONFIG:
    # activationTime in tick - 20 for 1 second
-   activationTime: 18000
+   activationTime: 600
+   maxSpeed: 2.0
+   price: 150
+   EntityTag: ardabahn
 
 MESSAGES:
    Error: "Es ist ein Fehler aufgetreten."
    Help: "§f[§2Ardabahn§f]§3 Befehlsliste:"
    Invalid_cmd: "Unbekannter Befehl!"
    NoPerms: "Das darfst du nicht tun!"
+   NoMoney: "Das kannst du dir nicht leisten!"
+   AlreadyRunning: "Die Minecarts fahren bereits schneller!"
    Reload: "Xcarts wurde neugeladen."
-   Slowdown: "§f[§2Ardabahn§f]§3 Die Minecarts fahren wieder mit normaler Geschwindigkeit."
-   Speedup: "§f[§2Ardabahn§f]§3 Die Minecarts der Ardabahn fahren nun für §a15 Minuten§3 schneller."
+   Slowdown: "Die Minecarts fahren wieder mit normaler Geschwindigkeit."
+   Speedup: "Die Minecarts der Ardabahn fahren nun für §b15 Minuten§3 schneller."
+   SpeedupOther: " sind die Loren zu langsam und beschleunigt sie."
    Version: "Aktuelle Version: "
 
 COMMANDS:

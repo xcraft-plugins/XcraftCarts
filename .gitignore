@@ -5,6 +5,12 @@
 *.ipr
 *.iws
 
+# eclipse
+.classpath
+.settings/
+.loadpath
+
+
 # IntelliJ
 out/
 
